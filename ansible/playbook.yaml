@@ -1,0 +1,28 @@
+---
+# playbook.yml
+- hosts: default
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: Install sshd & firewalld
+      apt:
+        pkg: 
+         - openssh-server
+         - firewalld
+        state: latest
+        update_cache: yes
+    - name: open firewall port
+      firewalld:
+        service: ssh
+        immediate: true
+        permanent: true
+        state: enabled
+    - name: Start Service sshd at startup
+      service:
+        name: ssh
+        enabled: yes
+    - name: Start Service firewalld at startup 
+      service:
+        name: firewalld
+        enabled: yes
