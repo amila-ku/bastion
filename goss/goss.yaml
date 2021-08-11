@@ -1,0 +1,12 @@
+port:
+  tcp:22:
+    listening: true
+    ip:
+    - 0.0.0.0
+service:
+  sshd:
+    enabled: true
+    running: true
+  firewalld:
+    enabled: true
+    running: true

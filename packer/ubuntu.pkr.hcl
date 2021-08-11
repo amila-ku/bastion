@@ -31,6 +31,13 @@ build {
     "source.amazon-ebs.ubuntu"
   ]
 
+  provisioner "ansible" {
+    playbook_file = "../ansible/playbook.yaml"
+  }
 
+  provisioner "goss" {
+    sleep = "5s"
+    tests = ["../goss/goss.yaml"]
+  }
 }
 
